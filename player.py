@@ -197,6 +197,8 @@ class spaceShip(SphereCollideObject):
             #create our missile
             currentMissile = Missile(self.loader, './assets/phaser/phaser.egg', self.render, tag, posVec, 4.0)
 
+            self.traverser.addCollider(currentMissile.collisionNode, self.handler)
+
             # "fluid = 1" makes collision be checked between the last interval and this interval to make sure theres nothing in-between both chcecks thath wasn't hit.
             Missile.Intervals[tag] = currentMissile.modelNode.posInterval(2.0, travVec, startPos = posVec, fluid = 1)
             Missile.Intervals[tag].start()
@@ -209,9 +211,6 @@ class spaceShip(SphereCollideObject):
                 self.taskManager.doMethodLater(0, self.Reload, 'reload')
                 return Task.cont
             
-        self.traverser.addCollider(currentMissile.collisionNode, self.handler)
-            
-    
     def HandleInto(self, entry):
         fromNode= entry.getFromNodePath().getName()
         print("fromNode: " + fromNode)
@@ -240,7 +239,7 @@ class spaceShip(SphereCollideObject):
 
     def DroneDestroy(self, hitID, hitPosition):
         # unity also has a find method, yet it is very inefficeint if used anywhere but at the beginning of the program.
-        nodeID = self.render.find(hitHD)
+        nodeID = self.render.find(hitID)
         nodeID.detachNode()
 
         # start the explosion
@@ -252,7 +251,7 @@ class spaceShip(SphereCollideObject):
         tag = 'particles-' + str(self.cntExplode)
 
         self.ExplodeIntervals[tag] = LerpFunc(self.ExplodeLight, fromData = 0, toData = 1, duration = 4.0, extraArgs = [impactPoint])
-        self.explodeIntervals[tag].start()
+        self.ExplodeIntervals[tag].start()
 
     def ExplodeLight(self, t, explosionPosition):
         if t == 1.0 and self.explodeEffect:
