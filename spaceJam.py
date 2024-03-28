@@ -18,7 +18,9 @@ class spaceJam(ShowBase):
         # reparents the model to the ship/player
         self.camera.reparentTo(self.ship.modelNode)
         # makes it so it's position is moving so it can collide into things
-        self.camera.setFluidPos(0, 0, 0)
+        self.camera.setFluidPos(0, 0, 1)
+        
+        self.disableMouse()
 
     # Initialize ShowBase to be used later
     def __init__(self):

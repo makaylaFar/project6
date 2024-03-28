@@ -19,7 +19,7 @@ class Planet(SphereCollideObject):
 class Drone(SphereCollideObject):
     droneCount = 0
     def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float):
-        super(Drone, self).__init__(loader, modelPath, parentNode, nodeName, 0, 2)
+        super(Drone, self).__init__(loader, modelPath, parentNode, nodeName, 0, 3.5)
         self.modelNode.setPos(posVec)
         self.modelNode.setScale(scaleVec)
 
@@ -29,7 +29,7 @@ class Drone(SphereCollideObject):
 
 class universe(InverseSphereCollideObject):
     def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float):
-        super(universe, self).__init__(loader, modelPath, parentNode, nodeName, 0, 1)
+        super(universe, self).__init__(loader, modelPath, parentNode, nodeName, 0, 0.9)
         self.modelNode.setPos(posVec)
         self.modelNode.setScale(scaleVec)
 
@@ -39,7 +39,7 @@ class universe(InverseSphereCollideObject):
 
 class spaceStation(CapsuleCollidableObject):
     def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float):
-        super(spaceStation, self).__init__(loader, modelPath, parentNode, nodeName, 1, -1, 5, 1, -1, -5, 10)
+        super(spaceStation, self).__init__(loader, modelPath, parentNode, nodeName, 1, -1, 5, 1, -1, -5, 20)
         self.modelNode.setPos(posVec)
         self.modelNode.setScale(scaleVec)
 

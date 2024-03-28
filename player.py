@@ -6,11 +6,11 @@ import re
 
 from panda3d.core import Vec3
 from panda3d.core import *
-from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
 from collideObjectBase import *
 from typing import Callable
 from direct.gui.OnscreenImage import OnscreenImage
+from spaceJamClasses import Drone as Drone
 
 
 class spaceShip(SphereCollideObject):
@@ -40,7 +40,7 @@ class spaceShip(SphereCollideObject):
         self.cntExplode = 0
         self.ExplodeIntervals = {}
 
-        self.traverser = CollisionTraverser
+        self.traverser = CollisionTraverser()
 
         self.handler = CollisionHandlerEvent()
 
@@ -231,8 +231,10 @@ class spaceShip(SphereCollideObject):
         if (strippedString == "Drone"):
             print(shooter + ' is DONE.')
             Missile.Intervals[shooter].finish()
-            print(victim, ' hi at ', intoPosition)
+            print(victim, ' hit at ', intoPosition)
             self.DroneDestroy(victim, intoPosition)
+
+            self.Explode(intoPosition)
 
         else:
             Missile.Intervals[shooter].finish()
@@ -254,6 +256,7 @@ class spaceShip(SphereCollideObject):
         self.ExplodeIntervals[tag].start()
 
     def ExplodeLight(self, t, explosionPosition):
+        
         if t == 1.0 and self.explodeEffect:
             self.explodeEffect.disable()
 

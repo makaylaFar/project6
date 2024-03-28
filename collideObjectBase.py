@@ -36,7 +36,7 @@ class SphereCollideObject(CollidableObject):
         super(SphereCollideObject, self).__init__(loader, modelPath, parentNode, nodeName)
 
         self.collisionNode.node().addSolid(CollisionSphere(colPositionVec, colRadius))
-        #self.collisionNode.show()
+        self.collisionNode.show()
 
 
 
