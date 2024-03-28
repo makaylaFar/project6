@@ -14,7 +14,7 @@ from spaceJamClasses import Drone as Drone
 
 
 class spaceShip(SphereCollideObject):
-    def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float, task, render, accept: Callable[[str, Callable], None]):
+    def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float, task, render, accept: Callable[[str, Callable], None], shipTrav):
         super(spaceShip, self).__init__(loader, modelPath, parentNode, nodeName, 0, 2)
         self.taskManager = task
         self.render = render
@@ -43,6 +43,8 @@ class spaceShip(SphereCollideObject):
         self.traverser = CollisionTraverser()
 
         self.handler = CollisionHandlerEvent()
+
+        self.shipTraverser = shipTrav
 
         self.handler.addInPattern('into')
 

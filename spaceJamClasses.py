@@ -1,10 +1,6 @@
 from panda3d.core import Vec3
 from panda3d.core import *
-from direct.showbase.ShowBase import ShowBase
-from direct.task import Task
 from collideObjectBase import *
-from typing import Callable
-from direct.gui.OnscreenImage import OnscreenImage
 
 class Planet(SphereCollideObject):
     def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float):

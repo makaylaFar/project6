@@ -32,6 +32,10 @@ class spaceJam(ShowBase):
         self.cTrav.showCollisions(self.render)
         self.pusher.addCollider(self.ship.collisionNode, self.ship.modelNode)
         self.cTrav.addCollider(self.ship.collisionNode, self.pusher)
+        self.traverser = PlacedObject()
+        self.traverser.addCollider(self.ship, self.pusher)
+
+        
         
 
     # Draws the cloudDefense
@@ -78,7 +82,7 @@ class spaceJam(ShowBase):
         self.planet4 = spaceJamClasses.Planet(self.loader, "./assets/planets/protoPlanet.x", self.render,'planet4',"./assets/planets/sandy.jpg", (300, 6000, 500), 200)
         self.planet5 = spaceJamClasses.Planet(self.loader, "./assets/planets/protoPlanet.x", self.render,'planet5',"./assets/planets/mars.jpg", (700, 2000, 100), 500)
         self.planet6 = spaceJamClasses.Planet(self.loader, "./assets/planets/protoPlanet.x", self.render,'planet6',"./assets/planets/sun.jpg", (0, -900, -1400), 700)
-        self.ship = playerClass.spaceShip(self.loader, "./assets/spaceShip/Dumbledore.egg", self.render,'ship', "./assets/spaceShip/spacejet_C.png", (0, 0, 0), 11, self.taskMgr, self.render, self.accept)
+        self.ship = playerClass.spaceShip(self.loader, "./assets/spaceShip/Dumbledore.egg", self.render,'ship', "./assets/spaceShip/spacejet_C.png", (0, 0, 0), 11, self.taskMgr, self.render, self.accept, self.traverser)
         self.spaceStation = spaceJamClasses.spaceStation(self.loader, "./assets/spaceStation/spaceStation.egg", self.render,'ship', "./assets/spaceStation/SpaceStation1_Dif2.png", (-3100, 200, 2000), 10)
 
         
