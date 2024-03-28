@@ -40,11 +40,13 @@ class spaceShip(SphereCollideObject):
         self.cntExplode = 0
         self.ExplodeIntervals = {}
 
-        self.traverser = CollisionTraverser()
+        self.traverser = shipTrav
 
         self.handler = CollisionHandlerEvent()
 
         self.shipTraverser = shipTrav
+
+        self.shipTraverser.addCollider(self.collisionNode, self.handler)
 
         self.handler.addInPattern('into')
 
@@ -263,7 +265,7 @@ class spaceShip(SphereCollideObject):
             self.explodeEffect.disable()
 
         elif t == 0:
-            self.explodeEffect.start(self.explodeNode)
+            self.explodeEffect.start(self.explodeNode(explosionPosition))
 
     def SetParticles(self):
         base.enableParticles()
